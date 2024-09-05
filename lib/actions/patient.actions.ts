@@ -60,6 +60,7 @@ export const registerPatient = async ({
   identificationDocument,
   ...patient
 }: RegisterUserParams) => {
+
   try {
     // Upload file ->  // https://appwrite.io/docs/references/cloud/client-web/storage#createFile
     let file;
@@ -103,7 +104,7 @@ export const getPatient = async (userId: string) => {
 			[Query.equal('userId', [userId])]
 		);
 
-		// console.log(patients, typeof userId);
+		// console.log(patients)
 
 		// Check if documents array is not empty
 		if (patients.documents.length > 0) {

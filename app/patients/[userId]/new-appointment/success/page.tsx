@@ -3,19 +3,20 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Doctors } from '@/constants';
-// import { getAppointment } from '@/lib/actions/appointment.actions';
+import { getAppointment } from '@/lib/actions/appointment.actions';
 import { currentYear, formatDateTime } from '@/lib/utils';
 
 const RequestSuccess = async ({
 	searchParams,
 	params: { userId },
 }: SearchParamProps) => {
-	// const appointmentId = (searchParams?.appointmentId as string) || '';
-	// const appointment = await getAppointment(appointmentId);
+	const appointmentId = (searchParams?.appointmentId as string) || '';
+	const appointment = await getAppointment(appointmentId);
 
-	// const doctor = Doctors.find(
-	// 	(doctor) => doctor.name === appointment.primaryPhysician
-	// );
+	const doctor = Doctors.find(
+		(doctor) => doctor.name === appointment.primaryPhysician
+	);
+
 
 	return (
 		<div className=" flex h-screen max-h-screen px-[5%]">
@@ -47,14 +48,14 @@ const RequestSuccess = async ({
 				<section className="request-details">
 					<p>Requested appointment details: </p>
 					<div className="flex items-center gap-3">
-						{/* <Image
+						<Image
 							src={doctor?.image!}
 							alt="doctor"
 							width={100}
 							height={100}
 							className="size-6"
 						/>
-						<p className="whitespace-nowrap">Dr. {doctor?.name}</p> */}
+						<p className="whitespace-nowrap">Dr. {doctor?.name}</p>
 					</div>
 					<div className="flex gap-2">
 						<Image
@@ -63,7 +64,7 @@ const RequestSuccess = async ({
 							width={24}
 							alt="calendar"
 						/>
-						{/* <p> {formatDateTime(appointment.schedule).dateTime}</p> */}
+						<p> {formatDateTime(appointment.schedule).dateTime}</p>
 					</div>
 				</section>
 
